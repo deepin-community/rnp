@@ -1,0 +1,4 @@
+usr/include/rnp/*.h
+usr/lib/${DEB_HOST_MULTIARCH}/cmake/rnp/rnp-*.cmake
+usr/lib/${DEB_HOST_MULTIARCH}/librnp.so
+usr/lib/${DEB_HOST_MULTIARCH}/pkgconfig/librnp.pc

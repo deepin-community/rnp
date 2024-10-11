@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -e
+
+if [ -d "$AUTOPKGTEST_ARTIFACTS" ]; then
+    cd "$AUTOPKGTEST_ARTIFACTS"
+fi
+
+for x in /usr/share/doc/librnp-dev/examples/*.c; do
+    bin="$(basename "$x" .c)"
+    printf 'building %s\n' "$bin"
+    gcc -g -O2 -Werror -Wall -pedantic -o "$bin" "$x" $(pkg-config --cflags --libs librnp)
+done 
+
+for x in generate encrypt decrypt sign verify; do
+    printf '**** %s ****\n' "$x"
+    "./$x"
+done

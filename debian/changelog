@@ -1,5 +1,192 @@
-template-repository (1.0-1) unstable; urgency=medium
+rnp (0.17.1-1) unstable; urgency=medium
 
-  * Initial release
+  * New upstream version (Closes: #1064486)
+  * Drop build-dep on python3-distutils (Closes: #1065948)
+  * Stop shipping librnp.a, following upstream
+  * Permit normal testing when gpg-from-sq is installed
+  * debian/librnp0.symbols: add rnp_signature_get_features
+  * move from pkg-config to pkgconf
+  * fix manpage grammar
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Fri, 10 May 2024 17:15:05 -0400
+
+rnp (0.17.0-3) unstable; urgency=medium
+
+  * avoid test timeouts on mipsel/mips64el (see
+    https://github.com/rnpgp/rnp/issues/2118)
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Wed, 16 Aug 2023 14:33:44 -0400
+
+rnp (0.17.0-2) unstable; urgency=medium
+
+  * move to unstable
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Tue, 15 Aug 2023 13:08:28 -0400
+
+rnp (0.17.0-1) experimental; urgency=medium
+
+  * New upstream release
+  * patch to use system libsexpp
+  * librnp-dev: ship librnp.a as well
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Thu, 25 May 2023 14:36:58 +0300
+
+rnp (0.17.0~git20220428-1) experimental; urgency=medium
+
+  * new experimental upstream git snapshot
+  * Constrain internally-reported version to something cmake and RNP can
+    handle (library thinks it is 0.16.999)
+  * added symbols:
+    - rnp_key_is_expired
+    - rnp_signature_get_key_fprint
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Thu, 28 Apr 2022 19:54:22 -0400
+
+rnp (0.16.3-1) unstable; urgency=medium
+
+  * New upstream release, Closes: #1034558
+    - Fixes CVE-2023-29479
+    - Fixes CVE-2023-29480
+  * standards-version: bump to 4.6.2 (no changes needed)
+  * drop unnecessary lintian overrides
+  * d/copyright: include 2023
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Wed, 24 May 2023 09:06:07 -0400
+
+rnp (0.16.2-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Mon, 03 Oct 2022 21:30:25 -0400
+
+rnp (0.16.1-1) unstable; urgency=medium
+
+  * New upstream release
+  * Standards-Version: bump to 4.6.1 (no changes needed)
+  * clean up lintian overrides
+  * update symbols file
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Fri, 09 Sep 2022 19:02:09 -0400
+
+rnp (0.16.0-1) unstable; urgency=medium
+
+  * New upstream version
+  * drop patches applied upstream, refresh patches
+  * clean up debian/TODO
+  * update d/copyright
+  * update symbols file
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Sat, 26 Mar 2022 13:58:06 -0400
+
+rnp (0.15.2-6) unstable; urgency=medium
+
+  * fix S2K tuning
+  * refresh patch
+  * Use a variant of upstream proposal for filtering exported symbols
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Wed, 03 Nov 2021 13:58:40 -0400
+
+rnp (0.15.2-5) unstable; urgency=medium
+
+  * add an explicit version-script to limit symbol exposure
+  * make s2k_iteration_tuning test even sloppier on s390x
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Wed, 03 Nov 2021 11:09:37 -0400
+
+rnp (0.15.2-4) unstable; urgency=medium
+
+  * streamline AEAD tests for armel and armhf
+  * loosen up s2k tuning test for s390x
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Fri, 29 Oct 2021 17:08:51 -0400
+
+rnp (0.15.2-3) unstable; urgency=medium
+
+  * Try to ignore accidentally-exported C++ symbols
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Fri, 29 Oct 2021 10:03:53 -0400
+
+rnp (0.15.2-2) unstable; urgency=medium
+
+  * Pull version information from debian/changelog (avoid git during build)
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Thu, 28 Oct 2021 18:29:44 -0400
+
+rnp (0.15.2-1) unstable; urgency=medium
+
+  * new upstream release
+  * standards-version: bump to 4.6.0 (no changes needed)
+  * drop patch merged upstream
+  * silence pedantic lintian warning about test vectors
+  * update symbols with rnp_key_get_default_key
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Wed, 27 Oct 2021 18:21:28 -0400
+
+rnp (0.15.1-1) unstable; urgency=medium
+
+  * new upstream release
+  * support nodoc build profile
+  * update symbols
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Thu, 03 Jun 2021 21:53:15 -0400
+
+rnp (0.15.0-1) unstable; urgency=medium
+
+  * new upstream release
+  * drop unused patches
+  * switch from pandoc to asciidoc for manpage generation
+  * move to simpler library package names -- librnp-dev and librnp0
+  * point upstream to the local copy of googletest
+  * augment symbols for 0.15.0
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Thu, 08 Apr 2021 12:18:09 -0400
+
+rnp (0.14.0-6) unstable; urgency=medium
+
+  * Produce more useful diagnostics for s2k iteration test
+  * use patches from upstream where possible
+  * update build-deps to match adopted upstream changes
+  * avoid using the network for gtest and ruby in upstream-preferred form
+  * work around unclear upstream guidance for building with googletest
+  * use upstream manpages
+  * fix spelling errors in upstream manpages
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Mon, 01 Mar 2021 20:43:22 -0500
+
+rnp (0.14.0-5) unstable; urgency=medium
+
+  * move C API docs to librnp-0-dev package
+  * Initial autopkgtest, building and running example .c files
+  * Use versioned Build-Depends
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Sun, 28 Feb 2021 23:57:35 -0500
+
+rnp (0.14.0-4) unstable; urgency=medium
+
+  * new source-only release to unstable
+  * d/clean: clean up Testing/Temporary/ directory
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Sun, 28 Feb 2021 09:32:03 -0500
+
+rnp (0.14.0-3) unstable; urgency=medium
+
+  * clean export
+  * clean up patch metadata
+  * re-enable parallel builds, even in /tmp
+  * avoid building the test suite when nocheck is present
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Fri, 12 Feb 2021 00:50:49 -0500
+
+rnp (0.14.0-2) unstable; urgency=medium
+
+  * include manpages
+  * spelling fixes
+  * clean up librnp.3 manpage
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Thu, 11 Feb 2021 16:37:41 -0500
+
+rnp (0.14.0-1) unstable; urgency=low
+
+  * Initial debian packaging (Closes: #945537).
+
+ -- Daniel Kahn Gillmor <dkg@fifthhorseman.net>  Thu, 11 Feb 2021 07:26:51 -0500

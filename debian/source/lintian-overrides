@@ -1,0 +1,2 @@
+# these are test elements that are expected to be long:
+rnp source: very-long-line-length-in-source-file * > 512 [src/tests/data/*]

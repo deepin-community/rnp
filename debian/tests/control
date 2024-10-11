@@ -1,0 +1,6 @@
+Tests: build-and-run-examples
+Depends:
+ gcc,
+ libc6-dev,
+ librnp-dev,
+ pkg-config,
