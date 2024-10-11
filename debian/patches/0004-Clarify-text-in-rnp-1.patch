@@ -1,0 +1,27 @@
+From: Daniel Kahn Gillmor <dkg@fifthhorseman.net>
+Date: Fri, 10 May 2024 16:56:23 -0400
+Subject: Clarify text in rnp(1)
+
+This avoids a lintian warning:
+
+I: rnp: typo-in-manual-page "allows to" "allows one to" [usr/share/man/man1/rnp.1.gz:595]
+
+While I was editing the manpage, I took the liberty of cleaning up the
+language further, too.
+---
+ src/rnp/rnp.1.adoc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/rnp/rnp.1.adoc b/src/rnp/rnp.1.adoc
+index ce1173e..cd72e10 100644
+--- a/src/rnp/rnp.1.adoc
++++ b/src/rnp/rnp.1.adoc
+@@ -330,7 +330,7 @@ By default RNP uses system's time in all signature/key checks, however in some s
+ Override or set a file name, stored inside of OpenPGP message. +
+ +
+ By default RNP will store input filename (or empty string for *stdin*/*env* input) in the resulting OpenPGP message during encryption or embedded signing.
+-This option allows to override this. Special value *_CONSOLE* may be used for "for your eyes only"-message. Refer OpenPGP documentation for the details.
++This option allows the user to override this filename. Special value *_CONSOLE* may be used for "for your eyes only"-message. Refer to OpenPGP documentation for details.
+ 
+ *--allow-hidden* ::
+ Allow hidden recipient support. +

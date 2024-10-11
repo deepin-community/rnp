@@ -1,4 +1,33 @@
 #!/usr/bin/make -f
 
+include /usr/share/dpkg/pkg-info.mk
+export DEB_VERSION
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_CXXFLAGS_MAINT_APPEND = -DS2K_MINIMUM_TUNING_RATIO=4
+
+ifneq (,$(filter $(DEB_HOST_ARCH), s390x))
+export DEB_CXXFLAGS_MAINT_APPEND = -DS2K_MINIMUM_TUNING_RATIO=1.5
+endif
+
+CONFIGURE_OPTIONS = -DBUILD_SHARED_LIBS=on \
+     -DDOWNLOAD_GTEST=off \
+     -DGTEST_SOURCES=/usr/src/googletest \
+     -DSYSTEM_LIBSEXPP=on \
+     -DDOWNLOAD_RUBYRNP=off
+
+ifneq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+CONFIGURE_OPTIONS += -DBUILD_TESTING=off
+endif
+
+ifneq (,$(filter nodoc,$(DEB_BUILD_OPTIONS)))
+CONFIGURE_OPTIONS += -DENABLE_DOC=off
+else
+CONFIGURE_OPTIONS += -DENABLE_DOC=on
+endif
+
+override_dh_auto_configure:
+	dh_auto_configure --builddirectory=build -- $(CONFIGURE_OPTIONS)
+
 %:
-	dh $@
+	dh $@ --builddirectory=build

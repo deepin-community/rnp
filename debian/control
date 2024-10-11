@@ -1,15 +1,67 @@
-Source: template-repository
-Section: unknown
+Source: rnp
+Section: utils
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Daniel Kahn Gillmor <dkg@fifthhorseman.net>
+Build-Depends:
+ asciidoctor <!nodoc>,
+ cmake (>= 3.14),
+ debhelper-compat (= 13),
+ gnupg <!nocheck>,
+ googletest <!nocheck>,
+ libbotan-2-dev (>= 2.14.0),
+ libbz2-dev,
+ libjson-c-dev (>= 0.11),
+ libsexpp-dev,
+ pkgconf,
+ python3 <!nocheck>,
+ zlib1g-dev,
+Standards-Version: 4.6.2
+Vcs-Git: https://salsa.debian.org/debian/rnp.git
+Vcs-Browser: https://salsa.debian.org/debian/rnp
+Homepage: https://www.rnpgp.com/software/rnp/
+Rules-Requires-Root: no
 
-Package: template-repository
+Package: rnp
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Multi-Arch: foreign
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ librnp0 (= ${binary:Version}),
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: Cross-platform OpenPGP (RFC4880) tools (command-line tool)
+ RNP is a set of cross-platform tools implementing OpenPGP (RFC 4880) and
+ related standards.
+ .
+ This package contains the command-line tool, rnp.
+
+Package: librnp0
+Architecture: any
+Section: libs
+Multi-Arch: same
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: Cross-platform OpenPGP (RFC4880) tools (library)
+ RNP is a set of cross-platform tools implementing OpenPGP (RFC 4880) and
+ related standards.
+ .
+ This package contains the shared library, librnp.
+
+Package: librnp-dev
+Section: libdevel
+Architecture: any
+Replaces: librnp-0-dev (<< 0.15.0)
+Breaks: librnp-0-dev (<< 0.15.0)
+Depends:
+ librnp0 (= ${binary:Version}),
+ ${misc:Depends},
+Description: Cross-platform OpenPGP (RFC4880) tools (development files)
+ RNP is a set of cross-platform tools implementing OpenPGP (RFC 4880) and
+ related standards.
+ .
+ This package contains the development headers and documentation used
+ to build other tools against the library.
